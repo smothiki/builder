@@ -25,6 +25,7 @@ RUN apk add --update-cache \
     xz \
     && rm -rf /var/cache/apk/*
 
+
 # install docker
 ENV DOCKER_BUCKET get.docker.com
 ENV DOCKER_VERSION 1.8.3
