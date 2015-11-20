@@ -67,7 +67,6 @@ cd $REPO_DIR
 
 git archive --format=tar.gz ${GIT_SHA} > ${APP_NAME}.tar.gz
 
-
 if [[ ! -f /var/run/secrets/object/store/access-key-id  ]]; then
     head -n 21 /etc/deis-slugbuilder.yaml > /etc/${SLUG_NAME}.yaml
 else
@@ -83,6 +82,8 @@ fi
 
 TAR_URL=http://$S3EP/git/home/${SLUG_NAME}/tar
 PUSH_URL=http://$S3EP/git/home/${SLUG_NAME}/push
+
+# TODO: push the archive to minio or S3. need unified URL format so that controller, slugbuilder & runner all can agree
 
 sed -i -- "s#repo_name#$META_NAME#g" /etc/${SLUG_NAME}.yaml
 sed -i -- "s#puturl#$PUSH_URL#g" /etc/${SLUG_NAME}.yaml
