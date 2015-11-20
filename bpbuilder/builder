@@ -74,8 +74,11 @@ else
     cp /etc/deis-slugbuilder.yaml /etc/${SLUG_NAME}.yaml
 fi
 
-if [ -z "$S3EP" ]; then
-    S3EP=${HOST}:3000
+# if minio is in the cluster, use it. otherwise use fetcher
+if [[ -n "$MINIO_SERVICE_HOST" && -n "$MINIO_SERVICE_PORT" ]]; then
+  S3EP=${MINIO_SERVICE_HOST}:${MINIO_SERVICE_PORT}
+elif [ -z "$S3EP" ]; then
+  S3EP=${HOST}:3000
 fi
 
 TAR_URL=http://$S3EP/git/home/${SLUG_NAME}/tar
