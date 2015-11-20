@@ -83,7 +83,7 @@ fi
 TAR_URL=http://$S3EP/git/home/${SLUG_NAME}/tar
 PUSH_URL=http://$S3EP/git/home/${SLUG_NAME}/push
 
-# TODO: push the archive to minio or S3. need unified URL format so that controller, slugbuilder & runner all can agree
+mc cp ${APP_NAME}.tar.gz http://${S3EP}/git/home/${SLUG_NAME}/tar
 
 sed -i -- "s#repo_name#$META_NAME#g" /etc/${SLUG_NAME}.yaml
 sed -i -- "s#puturl#$PUSH_URL#g" /etc/${SLUG_NAME}.yaml
