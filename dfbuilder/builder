@@ -97,6 +97,7 @@ puts-step "Building Docker image"
 docker build -t $TMP_IMAGE . 2>&1
 puts-step "Pushing image to private registry"
 docker push $TMP_IMAGE  &>/dev/null
+# TODO: also need to configure registry to talk to minio
 echo
 
 PROCFILE="{}"
