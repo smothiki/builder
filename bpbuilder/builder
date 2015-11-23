@@ -67,19 +67,23 @@ cd $REPO_DIR
 
 git archive --format=tar.gz ${GIT_SHA} > ${APP_NAME}.tar.gz
 
-
 if [[ ! -f /var/run/secrets/object/store/access-key-id  ]]; then
     head -n 21 /etc/deis-slugbuilder.yaml > /etc/${SLUG_NAME}.yaml
 else
     cp /etc/deis-slugbuilder.yaml /etc/${SLUG_NAME}.yaml
 fi
 
-if [ -z "$S3EP" ]; then
-    S3EP=${HOST}:3000
+# if minio is in the cluster, use it. otherwise use fetcher
+if [[ -n "$MINIO_SERVICE_HOST" && -n "$MINIO_SERVICE_PORT" ]]; then
+  S3EP=${MINIO_SERVICE_HOST}:${MINIO_SERVICE_PORT}
+elif [ -z "$S3EP" ]; then
+  S3EP=${HOST}:3000
 fi
 
 TAR_URL=http://$S3EP/git/home/${SLUG_NAME}/tar
 PUSH_URL=http://$S3EP/git/home/${SLUG_NAME}/push
+
+mc cp ${APP_NAME}.tar.gz http://${S3EP}/git/home/${SLUG_NAME}/tar
 
 sed -i -- "s#repo_name#$META_NAME#g" /etc/${SLUG_NAME}.yaml
 sed -i -- "s#puturl#$PUSH_URL#g" /etc/${SLUG_NAME}.yaml
