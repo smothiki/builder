@@ -27,9 +27,10 @@ DEIS_REGISTY ?= ${DEV_REGISTRY}
 # Kubernetes-specific information for RC, Service, and Image.
 RC := manifests/deis-${SHORT_NAME}-rc.yaml
 SVC := manifests/deis-${SHORT_NAME}-service.yaml
-# IMAGEBP := ${DEV_REGISTRY}/deis/bp${SHORT_NAME}:${VERSION}
-IMAGE := smothiki/${SHORT_NAME}:${VERSION}
+IMAGE := arschles/${SHORT_NAME}:${VERSION}
 
+RCDF := manifests/deis-df${SHORT_NAME}-rc.yaml
+SVCDF := manifests/deis-df${SHORT_NAME}-service.yaml
 
 all:
 	@echo "Use a Makefile to control top-level building of the project."
@@ -54,12 +55,16 @@ build:
 docker-build: build
 	docker build -t $(IMAGE) rootfs
 	perl -pi -e "s|image: [a-z0-9.:]+\/deis\/bp${SHORT_NAME}:[0-9a-z-.]+|image: ${IMAGE}|g" ${RC}
-# For cases where build is run inside of a container.
 
-
+<<<<<<< 6d40dee9734e6212b778e13aaada6b36633019d4
 # Push to a registry that Kubernetes can access.
 docker-push-bp:
 	docker push ${IMAGE}
+=======
+docker-push: build
+	docker push $(IMAGE)
+# For cases where build is run inside of a container.
+>>>>>>> chore(Makefile): removing old buildpack targets, adding docker-push target
 
 # Deploy is a Kubernetes-oriented target
 deploy: kube-service kube-rc
