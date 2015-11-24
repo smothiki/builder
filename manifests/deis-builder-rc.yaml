@@ -18,19 +18,11 @@ spec:
         app: deis-builder
     spec:
       containers:
-        - name: deis-builder
-          image: smothiki/builder:2.5.2
-          ports:
-            - containerPort: 2223
-            - containerPort: 3000
-          env:
-            - name: "EXTERNAL_PORT"
-              value: "2223"
-  #     volumeMounts:
-  #       - name: object-store
-  #         mountPath: /var/run/secrets/object/store
-  #         readOnly: true
-  # volumes:
-  #   - name: object-store
-  #     secret:
-  #       secretName: object-store
+      - name: deis-builder
+        image: arschles/builder:2.0.0-20151124104811
+        ports:
+          - containerPort: 2223
+          - containerPort: 3000
+        env:
+          - name: "EXTERNAL_PORT"
+            value: "2223"

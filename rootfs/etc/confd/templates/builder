@@ -96,7 +96,6 @@ fi
 
 git archive --format=tar.gz ${GIT_SHA} > ${APP_NAME}.tar.gz
 
-
 # if minio is in the cluster, use it. otherwise use fetcher
 if [[ -n "$DEIS_MINIO_SERVICE_HOST" && -n "$DEIS_MINIO_SERVICE_PORT" ]]; then
   S3EP=${DEIS_MINIO_SERVICE_HOST}:${DEIS_MINIO_SERVICE_PORT}
