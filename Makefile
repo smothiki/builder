@@ -11,7 +11,7 @@ export GO15VENDOREXPERIMENT=1
 # doesn't allow +, so we use -.
 # VERSION := 0.0.1-$(shell date "+%Y%m%d%H%M%S")
 
-VERSION := 2.0.0
+VERSION := 2.0.0-$(shell date "+%Y%m%d%H%M%S")
 BINARY_DEST_DIR := rootfs/usr/bin
 # Common flags passed into Go's linker.
 LDFLAGS := "-s -X main.version=${VERSION}"
