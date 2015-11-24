@@ -18,19 +18,20 @@ spec:
         app: deis-builder
     spec:
       containers:
-        - name: deis-builder
-          image: smothiki/builder:2.5.2
+<<<<<<< HEAD:manifests/deis-bpbuilder-rc.yaml
+        - name: deis-bpbuilder
+        image: deis/bpbuilder:2.0.0
           ports:
-            - containerPort: 2223
-            - containerPort: 3000
-          env:
-            - name: "EXTERNAL_PORT"
-              value: "2223"
-  #     volumeMounts:
-  #       - name: object-store
-  #         mountPath: /var/run/secrets/object/store
-  #         readOnly: true
-  # volumes:
-  #   - name: object-store
-  #     secret:
-  #       secretName: object-store
+            - containerPort: 2222
+        command:
+          - entrypoint.sh  
+=======
+      - name: deis-builder
+        image: smothiki/builder:2.4.3
+        ports:
+          - containerPort: 2223
+          - containerPort: 3000
+        env:
+          - name: "EXTERNAL_PORT"
+            value: "2223"
+>>>>>>> ed2f114... feat(builder):couple builders and add dockerbuilder pod:manifests/deis-builder-rc.yaml

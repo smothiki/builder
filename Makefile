@@ -51,7 +51,7 @@ build:
 		$(call check-static-binary,$(BINARY_DEST_DIR)/$$i); \
 	done
 
-docker-build: 
+docker-build: build
 	docker build -t $(IMAGE) rootfs
 	perl -pi -e "s|image: [a-z0-9.:]+\/deis\/bp${SHORT_NAME}:[0-9a-z-.]+|image: ${IMAGE}|g" ${RC}
 # For cases where build is run inside of a container.
