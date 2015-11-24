@@ -56,15 +56,9 @@ docker-build: build
 	docker build -t $(IMAGE) rootfs
 	perl -pi -e "s|image: [a-z0-9.:]+\/deis\/bp${SHORT_NAME}:[0-9a-z-.]+|image: ${IMAGE}|g" ${RC}
 
-<<<<<<< 6d40dee9734e6212b778e13aaada6b36633019d4
-# Push to a registry that Kubernetes can access.
-docker-push-bp:
-	docker push ${IMAGE}
-=======
-docker-push: build
+docker-push: docker-build
 	docker push $(IMAGE)
 # For cases where build is run inside of a container.
->>>>>>> chore(Makefile): removing old buildpack targets, adding docker-push target
 
 # Deploy is a Kubernetes-oriented target
 deploy: kube-service kube-rc
