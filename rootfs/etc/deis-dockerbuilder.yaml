@@ -11,7 +11,7 @@ spec:
   containers:
     - name: repo_name
       imagePullPolicy: Always
-      image: arschles/dockerbuilder:5.5
+      image: arschles/dockerbuilder:0.0.1-20151124102330
       env:
         - name: DEBUG
           value: "1"
