@@ -1,3 +1,21 @@
+### v2.1.0 -> v2.2.0
+
+#### Features
+
+- [`4ea46e7`](https://github.com/deis/builder/commit/4ea46e72a0b7700d94b6fbc810dbe61312aadbd9) registry: use registry proxy to talk to the internal registry
+
+#### Fixes
+
+- [`2a6f434`](https://github.com/deis/builder/commit/2a6f43461ece18739229aa343f9f32ab2e853281) pkg/conf: skip file if directory
+- [`08a89d8`](https://github.com/deis/builder/commit/08a89d8824844b05c1e8080021aeb6834b5b77e9) pkg/conf: skip ..data symlink reading creds
+- [`fe6f482`](https://github.com/deis/builder/commit/fe6f4823c9c7f167016c7ac8287b905d9933622a) pkg/git/git.go: write the pre-receive hook script directly to the file descriptor
+- [`8cc816f`](https://github.com/deis/builder/commit/8cc816fdeaaecc5e3c2f5354282bcf9416f22749) sshd: re-enable TestConcurrentPushSameRepo (#361)
+
+#### Documentation
+
+- [`33405a7`](https://github.com/deis/builder/commit/33405a75fcb4641b3a2c965c5ce89a2fbfe21d7b) github: simplify github templates
+
+
 ### v2.0.0-rc2 -> v2.0.0
 
 #### Features
